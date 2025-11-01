@@ -37,7 +37,6 @@ export default function AllMobiles() {
     }
   };
 
-  // توليد شكل الأرقام 1 2 3 4 ... 22
   const getPageNumbers = () => {
     const pages = [];
     const maxVisible = 4;

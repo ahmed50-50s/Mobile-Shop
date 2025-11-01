@@ -110,8 +110,6 @@ export default function Newest() {
           شاهد المزيد
         </button>
       </div>
-
-      <div>{...Array[5].map((_, index) => <div key={index}>index</div>)}</div>
     </div>
   );
 }
