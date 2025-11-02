@@ -11,7 +11,7 @@ export default function BrandsGallery() {
   const [brands, setBrands] = useState([]);
 
   function getBrands() {
-    axios.get(`http://72.60.188.251:9090/api/v1/brands`).then((response) => {
+    axios.get(`https://api.mobily.cloud/api/v1/brands`).then((response) => {
       setBrands(response.data.content || []);
     });
   }

@@ -15,7 +15,7 @@ export default function AllMobiles() {
   function getMobiles() {
     axios
       .get(
-        `http://72.60.188.251:9090/api/v1/mobiles?page=${pageNumber}&size=15`
+        `https://api.mobily.cloud/api/v1/mobiles?page=${pageNumber}&size=15`
       )
       .then((response) => {
         setMobiles(response.data.content || []);

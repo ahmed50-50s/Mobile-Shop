@@ -3,7 +3,7 @@ import axios from "axios";
 export default function SearchMobiles({ setMobiles, isSearching }) {
   function SearchData(search) {
     axios
-      .get(`http://72.60.188.251:9090/api/v1/mobiles/search?keyword=${search}`)
+      .get(`https://api.mobily.cloud/api/v1/mobiles/search?keyword=${search}`)
       .then((response) => {
         setMobiles(response.data.content || []);
         isSearching(true);

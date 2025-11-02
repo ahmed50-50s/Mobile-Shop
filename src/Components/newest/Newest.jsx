@@ -10,7 +10,7 @@ export default function Newest() {
 
   useEffect(() => {
     axios
-      .get("http://72.60.188.251:9090/api/v1/mobiles/latest")
+      .get("https://api.mobily.cloud/api/v1/mobiles/latest")
       .then((response) => {
         setData(response.data.content || []);
       })
