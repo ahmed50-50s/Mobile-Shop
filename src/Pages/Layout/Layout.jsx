@@ -8,10 +8,10 @@ export default function Layout() {
     <>
       <Nav />
       <div className=" lg:flex lg:flex-row-reverse md:block gap-6 px-4 mt-10 w-full">
-        <div className="lg:w-1/3 md:w-full lg:relative md:relative  mt-30 rounded-xl shadow-xl h-fit">
+        <div className="lg:w-2/7 md:w-full lg:relative md:relative  mt-30 rounded-xl shadow-xl h-fit">
           <SideBar />
         </div>
-        <div className="mt-20 lg:w-2/3 md:w-full lg:ml-6 md:ml-0">
+        <div className="mt-20 lg:w-3/4 md:w-full lg:ml-6 md:ml-0">
           <Outlet></Outlet>
         </div>
       </div>

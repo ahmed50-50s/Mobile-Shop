@@ -3,6 +3,7 @@ import { faStar } from "@fortawesome/free-solid-svg-icons/faStar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Rating } from "@mui/material";
 
 export default function TopRating() {
   const [data, setData] = useState([]);
@@ -63,7 +64,18 @@ export default function TopRating() {
             />
             <div>
               <h3 className="text-lg font-semibold">{item.name}</h3>
-              <p className="text-gray-600">Rating: {item.rating || "N/A"}</p>
+              <div className="flex items-center gap-2">
+                <Rating
+                  name="mobile-rating"
+                  defaultValue={ratingMap[item.rating]}
+                  precision={0.5}
+                  readOnly
+                  sx={{ color: "#fbbf24" }}
+                />
+                <span className="text-sm text-gray-600">
+                  {`(${ratingMap[item.rating]}/5)`}
+                </span>
+              </div>
             </div>
           </div>
         ))}

@@ -1,9 +1,16 @@
 import axios from "axios";
+import { useState } from "react";
 
 export default function SearchMobiles({ setMobiles, isSearching }) {
-  function SearchData(search) {
+  const [search, setSearch] = useState("");
+
+  function SearchData(e) {
+    e.preventDefault();
+
+    if (!search.trim()) return; // لو البحث فاضي متعملش حاجة
+
     axios
-      .get(`http://72.60.188.251:9090/api/v1/mobiles/search?keyword=${search}`)
+      .get(`https://api.mobily.cloud/api/v1/mobiles/search?keyword=${search}`)
       .then((response) => {
         setMobiles(response.data.content || []);
         isSearching(true);
@@ -12,20 +19,27 @@ export default function SearchMobiles({ setMobiles, isSearching }) {
         console.error("There was an error fetching the data!", error);
       });
   }
+
   return (
-    <>
-      <div>
-        <form
-          action=""
-          onSubmit={(e) => {
-            e.preventDefault();
-            SearchData(e.target[0].value);
-          }}
+    <div className="w-full flex justify-center px-4">
+      <form
+        onSubmit={SearchData}
+        className="w-full max-w-md flex items-center bg-white rounded-full shadow-md border border-gray-200 overflow-hidden"
+      >
+        <input
+          type="text"
+          placeholder="ابحث عن الموبايل الذي تريده..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="flex-1 px-5 py-3 text-gray-700 focus:outline-none text-sm sm:text-base"
+        />
+        <button
+          type="submit"
+          className="bg-blue-600 text-white px-6 py-3 font-medium hover:bg-blue-700 transition-all duration-200"
         >
-          <input type="text" placeholder="ابحث عن الموبايل الذي تريده" />
-          <button type="submit">بحث</button>
-        </form>
-      </div>
-    </>
+          بحث
+        </button>
+      </form>
+    </div>
   );
 }

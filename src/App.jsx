@@ -3,6 +3,9 @@ import Layout from "./Pages/Layout/Layout";
 import Home from "./Pages/Home/Home";
 import MobileDetails from "./Pages/MobileDetails/MobileDetails";
 import AllMobiles from "./Pages/AllMobiles/AllMobiles";
+import NewsPage from "./Pages/NewsPage/NewsPage";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function App() {
   return (
@@ -16,6 +19,7 @@ function App() {
               { index: true, element: <Home /> },
               { path: "mobile/:id", element: <MobileDetails /> },
               { path: "Allmobiles", element: <AllMobiles /> },
+              { path: "News/:id", element: <NewsPage /> },
             ],
           },
         ])}

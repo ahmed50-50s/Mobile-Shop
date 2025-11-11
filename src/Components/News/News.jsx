@@ -5,9 +5,11 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function News() {
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
 
   function NewsData() {
     axios
@@ -41,9 +43,7 @@ export default function News() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 relative rounded-2xl overflow-hidden shadow-xl group">
             <img
-              src={
-                mainArticle.photo[0] || "https://via.placeholder.com/800x500"
-              }
+              src={mainArticle.bannerUrl}
               alt={mainArticle.title}
               className="w-full h-[450px] object-cover group-hover:scale-105 transition-transform duration-500"
             />
@@ -54,7 +54,12 @@ export default function News() {
               <p className="text-gray-200 text-sm line-clamp-3">
                 {mainArticle.content}
               </p>
-              <button className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-full self-start hover:bg-blue-700 transition">
+              <button
+                onClick={() => {
+                  navigate(`/News/${mainArticle.id}`);
+                }}
+                className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-full self-start hover:bg-blue-700 transition"
+              >
                 اقرأ المزيد
               </button>
             </div>
@@ -65,9 +70,12 @@ export default function News() {
               <div
                 key={index}
                 className="flex items-center bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition"
+                onClick={() => {
+                  navigate(`/News/${item.id}`);
+                }}
               >
                 <img
-                  src={item.photo[0] || "https://via.placeholder.com/150x100"}
+                  src={item.bannerUrl}
                   alt={item.title}
                   className="w-32 h-24 object-cover"
                 />

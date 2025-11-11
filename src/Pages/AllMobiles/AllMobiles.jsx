@@ -3,6 +3,7 @@ import banner from "../../assets/images/banner.jpg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import SearchMobiles from "../../Components/SearchMobiles/SearchMobiles";
+import Brand from "../../Components/Brand/Brand";
 
 export default function AllMobiles() {
   const [mobiles, setMobiles] = useState([]);
@@ -82,7 +83,10 @@ export default function AllMobiles() {
         </div>
       </div>
 
-      <SearchMobiles setMobiles={setMobiles} isSearching={setIsSearching} />
+      <div className="flex flex-col md:flex-row items-center justify-between gap-4 mt-6 px-8">
+        <SearchMobiles setMobiles={setMobiles} isSearching={setIsSearching} />
+        <Brand setMobiles={setMobiles} isSearching={setIsSearching} />
+      </div>
 
       <div className="px-4 py-8">
         <div
@@ -143,17 +147,19 @@ export default function AllMobiles() {
 
         {/* Pagination */}
         <div className="flex justify-center items-center gap-2 mt-10">
-          <button
-            onClick={() => handlePageClick(pageNumber - 1)}
-            disabled={pageNumber === 0}
-            className={`px-3 py-1 rounded-full border ${
-              pageNumber === 0
-                ? "text-gray-400 border-gray-200 cursor-not-allowed"
-                : "text-[#1e3a5f] border-[#1e3a5f] hover:bg-[#1e3a5f] hover:text-white transition"
-            }`}
-          >
-            السابق
-          </button>
+          {!isSearching && (
+            <button
+              onClick={() => handlePageClick(pageNumber - 1)}
+              disabled={pageNumber === 0}
+              className={`px-3 py-1 rounded-full border ${
+                pageNumber === 0
+                  ? "text-gray-400 border-gray-200 cursor-not-allowed"
+                  : "text-[#1e3a5f] border-[#1e3a5f] hover:bg-[#1e3a5f] hover:text-white transition"
+              }`}
+            >
+              السابق
+            </button>
+          )}
 
           {!isSearching &&
             getPageNumbers().map((num, index) =>

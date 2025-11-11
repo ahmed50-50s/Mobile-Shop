@@ -22,13 +22,16 @@ export default function MobileDetails() {
     axios
       .get(`http://72.60.188.251:9090/api/v1/mobiles/${id}`)
       .then((response) => {
-        console.log(response.data);
         setDetails(response.data);
       })
       .catch((error) => {
         console.error("There was an error fetching the data!", error);
       });
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     fetchMobileDetails();
