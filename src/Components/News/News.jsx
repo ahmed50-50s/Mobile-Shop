@@ -13,7 +13,7 @@ export default function News() {
 
   function NewsData() {
     axios
-      .get(`http://72.60.188.251:9090/api/v1/articles/latest`)
+      .get(`https://api.mobily.cloud/api/v1/articles/latest`)
       .then((response) => {
         setData(response.data.content || []);
       })

@@ -3,9 +3,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import TopRating from "../TopRating/TopRating";
+import { useNavigate } from "react-router-dom";
 
 export default function BrandsGallery() {
   const [brands, setBrands] = useState([]);
+  const navigate = useNavigate();
+
+  function getBrands() {
+    axios.get(`https://api.mobily.cloud/api/v1/brands`).then((response) => {
+      setBrands(response.data.content || []);
+    });
+  }
 
   useEffect(() => {
     axios
@@ -25,6 +33,9 @@ export default function BrandsGallery() {
           <div
             key={index}
             className="flex flex-col items-center justify-center transition-transform duration-200 hover:scale-105"
+            onClick={() => {
+              navigate(`/Allmobiles`, { state: { brand: brand.brand } });
+            }}
           >
             <div className="w-[70px] h-[70px] rounded-full bg-white border border-gray-200 shadow-sm flex items-center justify-center overflow-hidden hover:shadow-md transition-all">
               <img

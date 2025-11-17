@@ -7,7 +7,19 @@ import NewsPage from "./Pages/NewsPage/NewsPage";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+
 function App() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      delay: 300,
+    });
+  }, []);
+
   return (
     <>
       <RouterProvider

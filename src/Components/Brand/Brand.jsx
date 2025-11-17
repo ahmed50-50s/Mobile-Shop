@@ -3,7 +3,7 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
-export default function Brand({ setMobiles, isSearching }) {
+export default function Brand({ mobiles, brand, setMobiles, isSearching }) {
   const brands = [
     "SAMSUNG",
     "APPLE",
@@ -61,8 +61,15 @@ export default function Brand({ setMobiles, isSearching }) {
   }
 
   useEffect(() => {
+    if (brand) {
+      setSelectedBrand(brand);
+      fetchMobiles();
+    }
+  }, [brand, mobiles]);
+
+  useEffect(() => {
     if (selectedBrand) {
-      fetchMobiles(selectedBrand);
+      fetchMobiles();
     }
   }, [selectedBrand]);
 

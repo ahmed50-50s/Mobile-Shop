@@ -20,7 +20,7 @@ export default function MobileDetails() {
 
   function fetchMobileDetails() {
     axios
-      .get(`http://72.60.188.251:9090/api/v1/mobiles/${id}`)
+      .get(`https://api.mobily.cloud/api/v1/mobiles/${id}`)
       .then((response) => {
         setDetails(response.data);
       })

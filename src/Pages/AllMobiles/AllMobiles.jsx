@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import banner from "../../assets/images/banner.jpg";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import SearchMobiles from "../../Components/SearchMobiles/SearchMobiles";
 import Brand from "../../Components/Brand/Brand";
 
@@ -11,13 +11,22 @@ export default function AllMobiles() {
   const [totalPages, setTotalPages] = useState(0);
   const [isSearching, setIsSearching] = useState(false);
 
+  const { state } = useLocation();
+  const brand = state?.brand || null;
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (brand) {
+      setMobiles(brand ? [brand] : "");
+      setIsSearching(true);
+      console.log(brand);
+    }
+  }, [brand]);
 
   function getMobiles() {
     axios
-      .get(
-        `http://72.60.188.251:9090/api/v1/mobiles?page=${pageNumber}&size=15`
-      )
+      .get(`https://api.mobily.cloud/api/v1/mobiles?page=${pageNumber}&size=15`)
       .then((response) => {
         setMobiles(response.data.content || []);
         setTotalPages(response.data.totalPages || 0);
@@ -85,7 +94,12 @@ export default function AllMobiles() {
 
       <div className="flex flex-col md:flex-row items-center justify-between gap-4 mt-6 px-8">
         <SearchMobiles setMobiles={setMobiles} isSearching={setIsSearching} />
-        <Brand setMobiles={setMobiles} isSearching={setIsSearching} />
+        <Brand
+          mobiles={mobiles}
+          brand={brand}
+          setMobiles={setMobiles}
+          isSearching={setIsSearching}
+        />
       </div>
 
       <div className="px-4 py-8">
