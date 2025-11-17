@@ -17,7 +17,7 @@ export default function BrandsGallery() {
 
   useEffect(() => {
     axios
-      .get(`http://72.60.188.251:9090/api/v1/brands`)
+      .get(`https://api.mobily.cloud/api/v1/brands`)
       .then((response) => setBrands(response.data.content || []));
   }, []);
 

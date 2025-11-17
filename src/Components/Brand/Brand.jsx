@@ -49,7 +49,7 @@ export default function Brand({ mobiles, brand, setMobiles, isSearching }) {
 
   function fetchMobiles() {
     axios
-      .get(`http://72.60.188.251:9090/api/v1/mobiles/brand/${selectedBrand}`)
+      .get(`https://api.mobily.cloud/api/v1/mobiles/brand/${selectedBrand}`)
       .then((response) => {
         setMobiles(response.data.content);
         console.log(response.data.content);
